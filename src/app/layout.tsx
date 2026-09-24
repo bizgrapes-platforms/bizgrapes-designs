@@ -30,10 +30,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <header className="border-b border-border bg-surface/80 backdrop-blur sticky top-0 z-10">
           <div className="mx-auto max-w-6xl px-5 sm:px-8 h-16 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2.5">
               <GrapeLogo />
-              <span className="font-display text-lg font-semibold tracking-tight">
-                Bizgrapes Designs
+              <span className="flex flex-col leading-tight">
+                <span className="text-[15px] font-bold tracking-[0.3px] text-foreground">
+                  Bizgrapes Designs
+                </span>
+                <span className="text-[10.5px] font-normal uppercase tracking-[0.63px] text-muted">
+                  Made with Bizgrapes AI
+                </span>
               </span>
             </Link>
             <a
