@@ -8,13 +8,13 @@ async function attachCreatorNames(
   if (rows.length === 0) return [];
 
   const userIds = Array.from(new Set(rows.map((r) => r.user_id)));
-  const { data: profiles } = await supabase
-    .from("profiles")
+  const { data: creators } = await supabase
+    .from("public_design_creator_names")
     .select("id, display_name")
     .in("id", userIds);
 
   const nameById = new Map(
-    (profiles ?? []).map((p) => [p.id, p.display_name])
+    (creators ?? []).map((p) => [p.id, p.display_name])
   );
 
   return rows.map((r) => ({
@@ -66,16 +66,6 @@ export async function getDesignById(id: string) {
   return withCreator;
 }
 
-export async function incrementViewCount(id: string, currentCount: number) {
-  // Best-effort: anon key may not have UPDATE rights until the
-  // increment_design_view RPC/policy migration is approved.
-  try {
-    await supabase
-      .from("published_designs")
-      .update({ view_count: currentCount + 1 })
-      .eq("id", id)
-      .eq("is_public", true);
-  } catch {
-    // ignore
-  }
+export async function incrementViewCount(id: string) {
+  await supabase.rpc("increment_design_view", { design_id: id });
 }

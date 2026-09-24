@@ -30,7 +30,7 @@ export default async function DesignDetail({ params }: PageProps<"/d/[id]">) {
 
   if (!design) notFound();
 
-  incrementViewCount(design.id, design.view_count);
+  incrementViewCount(design.id);
 
   return (
     <div className="mx-auto max-w-5xl px-5 sm:px-8 py-10 sm:py-14">
