@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { GrapeLogo } from "@/components/GrapeLogo";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <header className="border-b border-border bg-surface/80 backdrop-blur sticky top-0 z-10">
           <div className="mx-auto max-w-6xl px-5 sm:px-8 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <span className="h-7 w-7 rounded-full bg-violet-600" />
+              <GrapeLogo />
               <span className="font-display text-lg font-semibold tracking-tight">
                 Bizgrapes Designs
               </span>
