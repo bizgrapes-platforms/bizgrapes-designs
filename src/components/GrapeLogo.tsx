@@ -4,16 +4,17 @@ export function GrapeLogo({ size = 28 }: { size?: number }) {
       width={size}
       height={size}
       viewBox="0 0 640 640"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <rect x="140" y="70" width="26" height="90" rx="10" fill="#A78BFA" />
-      <path d="M166 70 Q210 60 220 100 Q195 105 166 90 Z" fill="#A78BFA" />
-      <circle cx="220" cy="230" r="95" fill="#C4B5FD" />
-      <circle cx="180" cy="400" r="115" fill="#A78BFA" />
-      <circle cx="380" cy="330" r="90" fill="#8B5CF6" />
-      <circle cx="300" cy="480" r="80" fill="#7C3AED" />
-      <circle cx="470" cy="450" r="80" fill="#6D28D9" />
+      <rect x="140" y="70" width="26" height="90" rx="10" fill="#A78BFA"/>
+      <path d="M166 70 Q210 60 220 100 Q195 105 166 90 Z" fill="#A78BFA"/>
+      <circle cx="220" cy="230" r="95" fill="#C4B5FD"/>
+      <circle cx="180" cy="400" r="115" fill="#A78BFA"/>
+      <circle cx="380" cy="330" r="90" fill="#8B5CF6"/>
+      <circle cx="300" cy="480" r="80" fill="#7C3AED"/>
+      <circle cx="470" cy="450" r="80" fill="#6D28D9"/>
     </svg>
   );
 }
