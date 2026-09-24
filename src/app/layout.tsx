@@ -43,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </Link>
             <a
               href="https://bizgrapes.com"
-              className="text-sm font-medium text-muted hover:text-violet-600 transition-colors"
+              className="hidden sm:inline text-sm font-medium text-muted hover:text-violet-600 transition-colors"
             >
               Made with Bizgrapes AI →
             </a>
