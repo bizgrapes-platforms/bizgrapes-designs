@@ -57,7 +57,8 @@ export async function getPublicDesigns({
   let query = supabase
     .from("published_designs")
     .select("*", { count: "exact" })
-    .eq("is_public", true);
+    .eq("is_public", true)
+    .eq("status", "approved");
 
   if (type) query = query.eq("design_type", type);
 
@@ -105,6 +106,7 @@ export async function getFeaturedDesigns(limit = 4) {
     .from("published_designs")
     .select("*")
     .eq("is_public", true)
+    .eq("status", "approved")
     .eq("is_featured", true)
     .order("published_at", { ascending: false })
     .limit(limit);
@@ -116,7 +118,8 @@ export async function getGalleryStats() {
   const { data, error } = await supabase
     .from("published_designs")
     .select("user_id, design_type")
-    .eq("is_public", true);
+    .eq("is_public", true)
+    .eq("status", "approved");
   if (error) throw error;
 
   const rows = data ?? [];
@@ -131,7 +134,8 @@ export async function getDesignTypes() {
   const { data, error } = await supabase
     .from("published_designs")
     .select("design_type")
-    .eq("is_public", true);
+    .eq("is_public", true)
+    .eq("status", "approved");
 
   if (error) throw error;
 
@@ -147,6 +151,7 @@ export async function getDesignById(id: string) {
     .select("*")
     .eq("id", id)
     .eq("is_public", true)
+    .eq("status", "approved")
     .maybeSingle();
 
   if (error) throw error;
@@ -168,6 +173,7 @@ export async function getCreatorProfile(userId: string) {
     .from("published_designs")
     .select("*")
     .eq("is_public", true)
+    .eq("status", "approved")
     .eq("user_id", userId)
     .order("published_at", { ascending: false });
   if (error) throw error;
