@@ -41,9 +41,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 </span>
               </span>
             </Link>
+            <form action="/" method="get" role="search" className="ml-auto mr-4 w-full max-w-[220px] sm:max-w-xs">
+              <input
+                type="search"
+                name="q"
+                maxLength={80}
+                placeholder="Search designs or creators"
+                aria-label="Search designs or creators"
+                className="w-full rounded-full border border-border bg-surface px-4 py-1.5 text-sm outline-none placeholder:text-muted focus:border-violet-600"
+              />
+            </form>
             <a
               href="https://bizgrapes.com"
-              className="hidden sm:inline text-sm font-medium text-muted hover:text-violet-600 transition-colors"
+              className="hidden lg:inline text-sm font-medium text-muted hover:text-violet-600 transition-colors"
             >
               Made with Bizgrapes AI →
             </a>

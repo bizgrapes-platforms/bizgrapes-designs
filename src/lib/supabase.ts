@@ -19,6 +19,8 @@ export type PublishedDesign = {
   published_at: string | null;
   created_at: string;
   view_count: number;
+  like_count: number;
+  is_featured: boolean;
 };
 
 export type Creator = {

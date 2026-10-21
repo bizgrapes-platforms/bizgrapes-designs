@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { getDesignById, incrementViewCount } from "@/lib/designs";
 import { TypeBadge } from "@/components/TypeBadge";
 import { ReportButton } from "@/components/ReportButton";
+import { LikeButton } from "@/components/LikeButton";
+import { CtaBand } from "@/components/CtaBand";
 
 export const revalidate = 0;
 
@@ -15,11 +17,26 @@ export async function generateMetadata({
   const design = await getDesignById(id);
   if (!design) return { title: "Design not found — Bizgrapes Designs" };
 
+  const image = design.file_url || design.thumbnail_url;
+  const description =
+    design.description ||
+    `${design.title} by ${design.creator_name}, made with Bizgrapes AI.`;
+
   return {
     title: `${design.title} — Bizgrapes Designs`,
-    description: design.description || undefined,
+    description,
     openGraph: {
-      images: design.thumbnail_url ? [design.thumbnail_url] : undefined,
+      type: "article",
+      title: design.title,
+      description,
+      siteName: "Bizgrapes Designs",
+      images: image ? [{ url: image, alt: design.title }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: design.title,
+      description,
+      images: image ? [image] : undefined,
     },
   };
 }
@@ -59,7 +76,15 @@ export default async function DesignDetail({ params }: PageProps<"/d/[id]">) {
             <h1 className="mt-3 font-display text-2xl sm:text-3xl font-semibold tracking-tight">
               {design.title}
             </h1>
-            <p className="mt-2 text-muted">by {design.creator_name}</p>
+            <p className="mt-2 text-muted">
+              by{" "}
+              <Link
+                href={`/u/${design.user_id}`}
+                className="font-medium text-violet-600 hover:underline"
+              >
+                {design.creator_name}
+              </Link>
+            </p>
           </div>
 
           {design.description && (
@@ -88,11 +113,17 @@ export default async function DesignDetail({ params }: PageProps<"/d/[id]">) {
             </span>
           </div>
 
+          <div>
+            <LikeButton designId={design.id} initialCount={design.like_count} />
+          </div>
+
           <div className="mt-auto pt-4 border-t border-border">
             <ReportButton designId={design.id} designTitle={design.title} />
           </div>
         </div>
       </div>
+
+      <CtaBand />
     </div>
   );
 }
